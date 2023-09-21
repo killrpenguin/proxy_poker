@@ -80,6 +80,7 @@ class Master_Proxy_List:
                 proxy_table = wait.until(ec.presence_of_all_elements_located((By.XPATH, xpath)))
                 proxy_table = [proxy.text for proxy in proxy_table]
                 for i in proxy_table:
+                    # use regex to pull ip:port as address, along with the websites latency test and protocol.
                     address = re.search("^\d.+?\s\d.+?\s", i)
                     protocol = re.search("H.+?\s|So.+?\d\s", i)
                     latency = re.search("\d{2,4}ms", i)
